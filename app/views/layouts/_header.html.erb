@@ -1,12 +1,74 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "sample app", root_path, id: "logo" %>
+<header style="z-index:1000;">
+
+  <script>
+    // ドロップダウンメニュー 
+    $(function(){
+
+      $("ul.sub").hide();
+
+      // マウスオーバー時
+      $("ul.menu li").hover(function(){
+        // this -> 「ul.menu li ul」
+        // not(:animated) -> アニメーション中のものに対しては処理しない
+        $("ul.sub:not(:animated)", this).slideDown();
+
+      // マウスリリース時
+      }, function(){
+        $("ul.sub",this).slideUp();
+      });
+
+    });
+  </script>
+
+
+  <!-- ヘッダー背景 -->
+  <div class="nav-bg"></div>
+
+  <!-- ロゴ -->
+  <div class="logo" style="z-index:9999;">
+    <%= link_to image_tag("logo.png", alt: "Logo"), root_path %>
+  </div>
+
+  <!-- ヘッダーナビゲーション -->
+  <div id="nav-header">
     <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",    root_path %></li>
-        <li><%= link_to "Help",    help_path %></li>
-        <li><%= link_to "Log in", '#' %></li>
+      <ul class="menu">
+        <li><%= link_to "Home",   root_path %></li>
+        <li><%= link_to "News",   help_path %></li>
+        <li><%= link_to "About",   '#' %></li>
+        <li><%= link_to "Works",   '#' %></li>
+        <!-- ドロップダウンメニュー -->
+        <li><%= link_to "Contact", '#' %>
+          <ul class="sub">
+              <li><%= link_to "Contact2", '#' %></li>
+              <li><%= link_to "Contact3", '#' %></li>
+              <li><%= link_to "Contact4", '#' %></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </div>
+
+  <!-- ハンバーガーメニューアイコン -->
+  <div id="nav-toggle">
+    <div>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- ハンバーガーメニューウインドウ -->
+  <div id="nav-window">
+    <nav>
+      <ul>
+        <li><%= link_to "Home",   root_path %></li>
+        <li><%= link_to "News",   help_path %></li>
+        <li><%= link_to "About",   '#' %></li>
+        <li><%= link_to "Works",   '#' %></li>
+        <li><%= link_to "Contact",   '#' %></li>
+      </ul>
+    </nav>
+  </div>
+
 </header>
